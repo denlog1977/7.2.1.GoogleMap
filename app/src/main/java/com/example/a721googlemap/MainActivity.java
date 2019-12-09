@@ -18,13 +18,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 11;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 12;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 11;
-        private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 12;
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -68,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     // Разрешение не получено. Делаем запрос на добавление разрешения звонка
-                    ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
                 } else { // Разрешение уже получено
                     EditText editText = findViewById(R.id.editTextPhoneNumber);
     //                String editTextString = editText.getText().toString();
@@ -91,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                     // Разрешение не получено. Делаем запрос на добавление разрешения звонка
-                    ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
                 } else {
 
                     // Разрешение уже получено
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     SmsManager smgr = SmsManager.getDefault();
-                    smgr.sendTextMessage("+79053703000",null,editTextString,null,null);
+                    smgr.sendTextMessage("+79053721001",null,editTextString,null,null);
 
     //                Intent intent = new Intent(Intent.ACTION_SEND, Uri.parse(editTextString));
     //                startActivity(intent);
