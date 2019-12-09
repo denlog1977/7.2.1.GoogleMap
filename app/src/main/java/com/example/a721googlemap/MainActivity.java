@@ -26,38 +26,36 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText editText = findViewById(R.id.editText);
+//                editText.setText("55.643747, 51.003607");
                 TextView textView = findViewById(R.id.textView);
+                String location = "";
                 String editTextString = editText.getText().toString();
-
-                editTextString = "55.643747, 51.003607";
 
                 Boolean isLetter = false;
                 String toastMessage = "";
 
+
                 for (int i=0; i<editTextString.length(); i++) {
                     char character = editTextString.charAt(i);
-                    toastMessage = character + "-";
-                    textView.append(toastMessage);
-                    Toast.makeText(MainActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
                     if (Character.isLetter(character)) {
                         isLetter = true;
-                        toastMessage = character  + " - !!! Это  буква !!!";
-                        textView.append(toastMessage);
-                        Toast.makeText(MainActivity.this, toastMessage, Toast.LENGTH_SHORT).show();
                     }
-                    editTextString = "geo:" + editTextString;
                     if (isLetter) {
-                        editTextString = "?q=" + editTextString;
+                        location = "geo:?q=" + editTextString;
+                    } else {
+                        location = "geo:" + editTextString;
                     }
-
                 }
 
-//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(editTextString));
-//                startActivityForResult(intent, -1);
+//                Toast.makeText(MainActivity.this, location, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(location));
+                startActivityForResult(intent, -1);
 
 //                Uri uri = Uri.parse("tel:+7 (495) 152-55-28");
 //                Intent intent = new Intent(Intent.ACTION_DIAL,uri);
 //                startActivity(intent);
+
             }
         });
 
