@@ -57,10 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(location));
                 startActivity(intent);
-//                startActivityForResult(intent, -1);
-//                Uri uri = Uri.parse("tel:+7 (495) 152-55-28");
-//                Intent intent = new Intent(Intent.ACTION_DIAL,uri);
-//                startActivity(intent);
+
             }
         });
 
@@ -100,9 +97,15 @@ public class MainActivity extends AppCompatActivity {
 
                     // Разрешение уже получено
 
+                    EditText editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
+
                     EditText editText = findViewById(R.id.editTextMessage);
                     String editTextString = editText.getText().toString();
 
+                    if (editTextPhoneNumber.getText().toString().length() == 0) {
+                        Toast.makeText(MainActivity.this, R.string.TypePhoneNumber, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (editTextString.length() == 0) {
                         Toast.makeText(MainActivity.this, R.string.inputTextMessage, Toast.LENGTH_SHORT).show();
                         return;
