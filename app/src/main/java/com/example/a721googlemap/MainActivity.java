@@ -98,15 +98,16 @@ public class MainActivity extends AppCompatActivity {
                     // Разрешение уже получено
 
                     EditText editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
+                    String phoneNumber = editTextPhoneNumber.getText().toString();
 
-                    EditText editText = findViewById(R.id.editTextMessage);
-                    String editTextString = editText.getText().toString();
+                    EditText editTextMessage = findViewById(R.id.editTextMessage);
+                    String textMessage = editTextMessage.getText().toString();
 
-                    if (editTextPhoneNumber.getText().toString().length() == 0) {
+                    if (phoneNumber.length() == 0) {
                         Toast.makeText(MainActivity.this, R.string.TypePhoneNumber, Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (editTextString.length() == 0) {
+                    if (textMessage.length() == 0) {
                         Toast.makeText(MainActivity.this, R.string.inputTextMessage, Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -115,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
                     intent.setData(Uri.parse("smsto:"));
                     intent.setType("vnd.android-dir/mms-sms");
 //                    intent.setDataAndType(Uri.parse("smsto:"), "vnd.android-dir/mms-sms");
-                    intent.putExtra("address","+79053703000");
-                    intent.putExtra("sms_body","Привет от программы 7.2.1.GoogleMap. " + editTextString);
+                    intent.putExtra("address",phoneNumber;
+                    intent.putExtra("sms_body","Привет от программы 7.2.1.GoogleMap. " + textMessage);
                     startActivity(Intent.createChooser(intent,"Отправить смс с помощью"));
 
 //                    SmsManager smgr = SmsManager.getDefault();
