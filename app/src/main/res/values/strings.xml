@@ -2,4 +2,7 @@
     <string name="app_name">7.2.1.GoogleMap</string>
     <string name="address">Введите адрес или координаты</string>
     <string name="Search">Поиск</string>
+    <string name="TypePhoneNumber">Введите номер телефона</string>
+    <string name="Call">Звоним</string>
+    <string name="Send">Отправляем</string>
 </resources>

@@ -26,14 +26,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText editText = findViewById(R.id.editText);
-//                editText.setText("55.643747, 51.003607");
-                TextView textView = findViewById(R.id.textView);
                 String location = "";
                 String editTextString = editText.getText().toString();
 
-                Boolean isLetter = false;
-                String toastMessage = "";
+                if (editTextString.length() == 0) {
+                    Toast.makeText(MainActivity.this, R.string.address, Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                Boolean isLetter = false;
 
                 for (int i=0; i<editTextString.length(); i++) {
                     char character = editTextString.charAt(i);
@@ -47,18 +48,36 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-//                Toast.makeText(MainActivity.this, location, Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(location));
-                startActivityForResult(intent, -1);
-
+                startActivity(intent);
+//                startActivityForResult(intent, -1);
 //                Uri uri = Uri.parse("tel:+7 (495) 152-55-28");
 //                Intent intent = new Intent(Intent.ACTION_DIAL,uri);
 //                startActivity(intent);
-
             }
         });
 
+        Button buttonPhoneNumber = findViewById(R.id.buttonPhoneNumber);
+        buttonPhoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EditText editText = findViewById(R.id.editTextPhoneNumber);
+                String location = "";
+                String editTextString = editText.getText().toString();
+
+                if (editTextString.length() == 0) {
+                    Toast.makeText(MainActivity.this, R.string.TypePhoneNumber, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(editTextString));
+                startActivity(intent);
+            }
+        });
 
     }
+
+
+
 }
