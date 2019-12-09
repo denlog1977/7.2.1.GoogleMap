@@ -74,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
                 } else { // Разрешение уже получено
                     EditText editText = findViewById(R.id.editTextPhoneNumber);
-    //                String editTextString = editText.getText().toString();
-                    String editTextString = "tel:+7 (905) 370-30-00";
+                    String editTextString = editText.getText().toString();
                     if (editTextString.length() == 0) {
                         Toast.makeText(MainActivity.this, R.string.TypePhoneNumber, Toast.LENGTH_SHORT).show();
                         return;
@@ -100,19 +99,25 @@ public class MainActivity extends AppCompatActivity {
                     // Разрешение уже получено
 
                     EditText editText = findViewById(R.id.editTextMessage);
-                    //String editTextString = editText.getText().toString();
-                    String editTextString = "Привет от Деника! Далее Тект Отправленного СМС.";
+                    String editTextString = editText.getText().toString();
+                    //String editTextString = "Привет! СМС из пограммы 7.2.1.GoogleMap.";
 
                     if (editTextString.length() == 0) {
                         Toast.makeText(MainActivity.this, R.string.inputTextMessage, Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-                    SmsManager smgr = SmsManager.getDefault();
-                    smgr.sendTextMessage("+79053721001",null,editTextString,null,null);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+//                    intent.setData(Uri.parse("smsto:"));
+//                    intent.setType("vnd.android-dir/mms-sms");
+                    intent.setDataAndType(Uri.parse("smsto:"), "vnd.android-dir/mms-sms");
+                    intent.putExtra("address","+79053703000");
+                    intent.putExtra("sms_body","Привет от программы 7.2.1.GoogleMap");
+                    startActivity(Intent.createChooser(intent,"Отправить смс с помощью"));
 
-    //                Intent intent = new Intent(Intent.ACTION_SEND, Uri.parse(editTextString));
-    //                startActivity(intent);
+//                    SmsManager smgr = SmsManager.getDefault();
+//                    smgr.sendTextMessage("+79053703000",null,editTextString,null,null);
+
                 }
             }
         });
