@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.setData(Uri.parse("smsto:"));
                     intent.setType("vnd.android-dir/mms-sms");
 //                    intent.setDataAndType(Uri.parse("smsto:"), "vnd.android-dir/mms-sms");
-                    intent.putExtra("address",phoneNumber;
+                    intent.putExtra("address",phoneNumber);
                     intent.putExtra("sms_body","Привет от программы 7.2.1.GoogleMap. " + textMessage);
                     startActivity(Intent.createChooser(intent,"Отправить смс с помощью"));
 
