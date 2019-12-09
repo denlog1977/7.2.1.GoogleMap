@@ -5,4 +5,5 @@
     <string name="TypePhoneNumber">Введите номер телефона</string>
     <string name="Call">Звоним</string>
     <string name="Send">Отправляем</string>
+    <string name="inputTextMessage">Введите текст сообщения</string>
 </resources>
